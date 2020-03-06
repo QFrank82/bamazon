@@ -4,21 +4,22 @@ var Table = require("cli-table");
 
 var connection = mysql.createConnection({
 	host:"localhost",
-	port:3703,
+	port: 3870,
 	user:"root",
-	password:"",
+	password:"password",
 	database:"bamazon_db"
 });
 
-connection.connect(function(err){
-	if(err)throw err;
-	console.log("connected as id" + connection.threadId);
+connection.connect(function (err) {
+	if (err) throw err;
+    console.log("connected as id" + connection.threadId);
+    
 });
 
 var displayProducts = function(){
 	var query = "Select * FROM products";
 	connection.query(query, function(err, res){
-		if(err) throw err;
+		if(err)throw err;
 		var displayTable = new Table ({
 			head: ["Item ID", "Product Name", "Catergory", "Price", "Quantity"],
 			colWidths: [10,25,25,10,14]
